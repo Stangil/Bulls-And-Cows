@@ -1,5 +1,6 @@
 #include "FBullCowGame.h"
-
+#include <map>
+#define TMap std::map
 
 
 FBullCowGame::FBullCowGame()
@@ -17,7 +18,7 @@ bool FBullCowGame::IsGameWon() const { return bGameWon; }
 
 void FBullCowGame::Reset()
 {
-	constexpr int32 MAX_TRIES = 8;
+	constexpr int32 MAX_TRIES = 3;
 	const FString HIDDEN_WORD = "planets";
 
 	MyHiddenWord = HIDDEN_WORD;
@@ -32,11 +33,11 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 {
 	if (false)
 	{
-		return EGuessStatus::Not_Isogram;
+		return EGuessStatus::Not_Isogram;//TODO write function
 	}
 	else if (false)
 	{
-		return EGuessStatus::Not_Lowercase;
+		return EGuessStatus::Not_Lowercase;//TODO write function
 	}
 	else if (MyHiddenWord.length() != Guess.length())
 	{
@@ -44,7 +45,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 	}
 	else if (false)// if the guess contains incorrect characters ie numbers or symbols
 	{
-		return EGuessStatus::Invalid_Characters;
+		return EGuessStatus::Invalid_Characters;//TODO write function
 	}
 	else
 	{

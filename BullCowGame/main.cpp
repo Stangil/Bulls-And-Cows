@@ -11,6 +11,7 @@ using int32 = int;
 
 void PrintIntro();
 void PlayGame();
+void PrintGameSummary();
 FText GetValidGuess();
 bool AskToPlayAgain();
 FBullCowGame BCGame;
@@ -39,8 +40,10 @@ void PlayGame()
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ", Cows = " << BullCowCount.Cows << "\n\n";
 	}
-	//TODO Add game summary
+	PrintGameSummary();
+	return;
 }
+
 //loop continually until player enters a valid guess
 FText GetValidGuess()
 {
@@ -75,18 +78,27 @@ FText GetValidGuess()
 	return Guess;
 }
 
-bool AskToPlayAgain()
-{
-	std::cout << "Do you want to play again(y/n)? ";
-	FText Response = "";
-	getline(std::cin, Response);
-	return (Response[0] == 'y' || Response[0] == 'Y');
-}
-
 void PrintIntro()
 {
 	//intoduce the game
 	std::cout << "\n\nWelcome to Bulls and Cows, a fun word game." << std::endl;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of?\n" << std::endl;
 	return;
+}
+void PrintGameSummary()
+{
+	//TODO Add game summary
+	if (BCGame.IsGameWon()) {
+		std::cout << "Congrats! You won!\n\n";
+	}
+	else {
+		std::cout << "Sorry, try again.\n\n";
+	}
+}
+bool AskToPlayAgain()
+{
+	std::cout << "Do you want to play again(y/n)? ";
+	FText Response = "";
+	getline(std::cin, Response);
+	return (Response[0] == 'y' || Response[0] == 'Y');
 }
