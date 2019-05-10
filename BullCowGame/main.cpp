@@ -60,16 +60,16 @@ FText GetValidGuess()
 		switch (Status)
 		{
 		case EGuessStatus::Wrong_Length:
-			std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word.\n";
+			std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word.\n\n";
 			break;
 		case EGuessStatus::Not_Isogram:
-			std::cout << "Please enter an isogram.\n";
+			std::cout << "Please enter an isogram.\n\n";
 			break;
 		case EGuessStatus::Invalid_Characters:
-			std::cout << "Please enter only valid letters.\n";
+			std::cout << "Please enter only valid letters.\n\n";
 			break;
 		case EGuessStatus::Not_Lowercase:
-			std::cout << "Please enter only lowercase letters.\n";
+			std::cout << "Please enter only lowercase letters.\n\n";
 			break;
 		default:
 			break;

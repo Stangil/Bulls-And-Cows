@@ -31,21 +31,22 @@ void FBullCowGame::Reset()
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 {
-	if (false)
+	if (MyHiddenWord.length() != Guess.length())
+	{
+	return EGuessStatus::Wrong_Length;
+	}
+	else if (!IsIsogram(Guess))
 	{
 		return EGuessStatus::Not_Isogram;//TODO write function
 	}
-	else if (false)
+	else if (false)// do we even need this check?
 	{
 		return EGuessStatus::Not_Lowercase;//TODO write function
 	}
-	else if (MyHiddenWord.length() != Guess.length())
-	{
-		return EGuessStatus::Wrong_Length;
-	}
+	
 	else if (false)// if the guess contains incorrect characters ie numbers or symbols
 	{
-		return EGuessStatus::Invalid_Characters;//TODO write function
+		return EGuessStatus::Invalid_Characters;//TODO write function may want to include in isogram test
 	}
 	else
 	{
@@ -53,6 +54,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 	}
 
 }
+
 //recieves a Valid guess, increments turn, and returns count
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
@@ -88,4 +90,20 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 		bGameWon = false;
 	}
 	return BullCowCount;
+}
+
+bool FBullCowGame::IsIsogram(FString Guess) const
+{
+	TMap<char, bool> LetterSeen;
+	for (auto Letter : Guess)
+	{
+		Letter = tolower(Letter);
+		if (LetterSeen[Letter]) {
+			return false;
+		} else {
+			LetterSeen[Letter] = true;
+		}
+	}
+
+	return true;
 }
