@@ -37,11 +37,11 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 	}
 	else if (!IsIsogram(Guess))
 	{
-		return EGuessStatus::Not_Isogram;//TODO write function
+		return EGuessStatus::Not_Isogram;
 	}
-	else if (false)// do we even need this check?
+	else if (!IsLowercase(Guess))
 	{
-		return EGuessStatus::Not_Lowercase;//TODO write function
+		return EGuessStatus::Not_Lowercase;
 	}
 	
 	else if (false)// if the guess contains incorrect characters ie numbers or symbols
@@ -105,5 +105,16 @@ bool FBullCowGame::IsIsogram(FString Guess) const
 		}
 	}
 
+	return true;
+}
+
+bool FBullCowGame::IsLowercase(FString Guess) const
+{
+	for (auto Letter : Guess)
+	{
+		if (!islower(Letter)) {
+			return false;
+		}
+	}
 	return true;
 }
