@@ -1,14 +1,11 @@
+#pragma once
 #include "FBullCowGame.h"
 #include <map>
+//To make the game Unreal syntax friendly
 #define TMap std::map
 
 
-FBullCowGame::FBullCowGame()
-{
-	Reset();
-}
-
-int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
+FBullCowGame::FBullCowGame(){ Reset(); }
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
@@ -16,13 +13,18 @@ int32 FBullCowGame::GetHiddenWordLength() const { return  MyHiddenWord.length();
 
 bool FBullCowGame::IsGameWon() const { return bGameWon; }
 
+int32 FBullCowGame::GetMaxTries() const 
+{ 
+	TMap<int32, int32> WordLengthToMaxTries{ {3,5},{4,6},{5,10},{6,15},{7,20} };
+
+	return WordLengthToMaxTries[MyHiddenWord.length()];
+}
+
 void FBullCowGame::Reset()
 {
-	constexpr int32 MAX_TRIES = 3;
-	const FString HIDDEN_WORD = "planets";
+	const FString HIDDEN_WORD = "planet";//This MUST be and isogram (No repeating letters)
 
 	MyHiddenWord = HIDDEN_WORD;
-	MyMaxTries = MAX_TRIES;
 	MyCurrentTry = 1;
 	bGameWon = false;
 	return;
